@@ -1,4 +1,4 @@
-# Top Dataset Downloader (v0.0.1)
+# Top Dataset Downloader (v0.0.2)
 
 Scripts to download and format the Top Tagging benchmark dataset as described in [1707.08966](https://arxiv.org/abs/1707.08966) and [1902.09914](https://arxiv.org/abs/1902.09914). The dataset is hosted [here](https://syncandshare.desy.de/index.php/s/llbX3zpLhazgPJ6). If you use this dataset, *please cite the original papers*.
 
