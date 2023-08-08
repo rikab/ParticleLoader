@@ -19,4 +19,32 @@ bash download.sh dir
 If ```dir``` already contains ```train.h5```, ```test.h5```, or ```val.h5```, they will not be redownloaded.
 
 
+The file ```format.py``` will convert these files to a numpy-readable format suitable for ML purposes.
+
+```
+python format.py dir train
+```
+
+Which will format the ```train.h5``` file in the directory ```dir``` and produce the file ```train.npz```. This numpy file contains two numpy arrays, and can be accessed using:
+
+```
+X, Y = np.load("dir/tain.npz", allow_pickle = True)
+```
+The array ```X``` is an $N\times 201 \times 4$ array of particles. 
+
+
+## Dependencies
+
+The following python packages are required to use '''format.py''':
+
+* numpy
+* pandas
+* pytables
+* urllib3
+* tqdm
+
+
+## Changelog
+
+- v0.0.1: 31 July 2023. Initial release.
 
