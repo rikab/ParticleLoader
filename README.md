@@ -6,19 +6,21 @@ The dataset consists of hadronic $t\bar{t}$ and QCD dijets generated using PYTHI
 
 Jets are defined using the AK8 ("Fat Jet") algorithm in FastJet. For each event, only the leading jet is included in the dataset. Cuts are then applied: $p_{T,J} \in [550, 650]$ GeV and $|\eta_J| < 2$. For top jets, a top parton and its decay partons are additionally reuquired to be within $\Delta R = 0.8$ of the jet axis. For each jet, the 4-momentum of the leading 200 constituents are stored, zero-padded.
 
-There are three files: ```train.h5```, ```test.h5```, and ```val.h5```, with 600k, 200k, and 600k jets respectively, for each class (top and QCD).
+There are three files: ```train.h5```, ```test.h5```, and ```val.h5```, with 600k, 200k, and 200k jets respectively, for each class (top and QCD).
+
+This code is based heavily off of the [energyflow package](https://github.com/pkomiske/EnergyFlow/).
 
 ## Usage
 
-To load the dataset ```dataset``` (either "train", "test", or "val) from the ```dir```, use 
+To load the dataset ```dataset``` (either "train", "test", or "val) from the directory ```dir```, use 
 
 ```
-X_train, Y_train = load(cache_dir=dir, dataset="train", num_data = 250000)
+X_train, Y_train = load(cache_dir=dir, dataset=dataset, num_data = 250000)
 ```
 
 If ```dir``` does not already contain the downloaded and formatted files, they will be downloaded and re-formatted to a numpy-readable format suitable for ML purposes.
 
-The array ```X``` is an $N\times 200 \times 4$ array of particles, and ```Y```is an $N \times 1$ array of integers: 0 for QCD, and 1 for top jets.
+The array ```X``` is an $N\times 200 \times 4$ numpy array of particles, and ```Y```is an $N \times 1$ array of integers: 0 for QCD, and 1 for top jets.
 
 See ```example.ipynb``` for example usage.
 
