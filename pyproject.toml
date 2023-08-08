@@ -1,0 +1,80 @@
+[build-system]
+requires = [
+    "hatchling>=1.13.0",
+    "hatch-vcs>=0.3.0",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "toploader"
+dynamic = ["version"]
+description = "Code for downloading the Top Tagging Dataset"
+readme = "README.md"
+license = { text = "MIT" }  # SPDX short identifier
+requires-python = ">=3.7"
+authors = [
+    { name = "Rikab Gambhir", email = "rikab@mit.edu" },
+]
+keywords = [
+    "top tagging",
+    "jet physics",
+    "machine learning",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "pandas",
+    "tqdm",
+    "matplotlib>=3.5.0",
+    "numpy",  # compatible versions controlled through scipy
+]
+
+[project.urls]
+Documentation = "https://github.com/rikab/TopDatasetDownloader"
+Homepage = "https://github.com/rikab/TopDatasetDownloader"
+"Issue Tracker" = "https://github.com/rikab/TopDatasetDownloader/issues"
+"Releases" = "https://github.com/rikab/TopDatasetDownloader/releases"
+"Source Code" = "https://github.com/rikab/TopDatasetDownloader"
+
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/toploader/_version.py"
+
+[tool.hatch.build.targets.sdist]
+# only-include files that are needed to ignore examples
+only-include = [
+    "/src",
+    "/LICENSE",
+    "/README.md",
+    "/pyproject.toml",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/toploader"]
+
+[tool.coverage.run]
+source = ["toploader"]
+branch = true
+
+[tool.coverage.report]
+precision = 1
+sort = "cover"
+show_missing = true

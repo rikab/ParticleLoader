@@ -10,41 +10,48 @@ There are three files: ```train.h5```, ```test.h5```, and ```val.h5```, with 600
 
 ## Usage
 
-To download the files to a directory ```dir```, use 
+To load the dataset ```dataset``` (either "train", "test", or "val) from the ```dir```, use 
 
 ```
-bash download.sh dir
+X_train, Y_train = load(cache_dir=dir, dataset="train", num_data = 250000)
 ```
 
-If ```dir``` already contains ```train.h5```, ```test.h5```, or ```val.h5```, they will not be redownloaded.
+If ```dir``` does not already contain the downloaded and formatted files, they will be downloaded and re-formatted to a numpy-readable format suitable for ML purposes.
 
+The array ```X``` is an $N\times 200 \times 4$ array of particles, and ```Y```is an $N \times 1$ array of integers: 0 for QCD, and 1 for top jets.
 
-The file ```format.py``` will convert these files to a numpy-readable format suitable for ML purposes.
+See ```example.ipynb``` for example usage.
+
+## Installation
+
+### From this repository locally
+
+In your Python environment from the top level of this repository run
 
 ```
-python format.py dir train
+python -m pip install .
 ```
 
-Which will format the ```train.h5``` file in the directory ```dir``` and produce the file ```train.npz```. This numpy file contains two numpy arrays, and can be accessed using:
+### From GitHub
+
+In your Python environment run
 
 ```
-X, Y = np.load("dir/tain.npz", allow_pickle = True)
-```
-The array ```X``` is an $N\times 201 \times 4$ array of particles. 
-
+python -m pip install "toploader @ git+https://github.com/rikab/TopDatasetDownloader.git"
+``````
 
 ## Dependencies
 
-The following python packages are required to use '''format.py''':
+The following python packages are required by the data formatter:
 
 * numpy
 * pandas
-* pytables
 * urllib3
 * tqdm
 
 
 ## Changelog
 
+- v0.0.2: 8 August 2023. Pip-installable.
 - v0.0.1: 31 July 2023. Initial release.
 
