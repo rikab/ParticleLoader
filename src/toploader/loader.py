@@ -65,7 +65,10 @@ def load(num_data = 100000, dataset = "train", cache_dir = "topdata", remove_raw
         num_data = -1
 
     # Format directory and check existance
-    datadir = os.path.expanduser(cache_dir)
+    try:
+        datadir = os.path.expanduser(cache_dir)
+    except:
+        datadir = cache_dir
     if not os.path.exists(datadir):
         raise Exception(f"Cache directory {datadir} does not Exist!")        
 

@@ -54,6 +54,7 @@ The following python packages are required by the data formatter:
 
 ## Changelog
 
+- v0.0.3: 9 August 2023. Minor Bug Fixes.
 - v0.0.2: 8 August 2023. Pip-installable.
 - v0.0.1: 31 July 2023. Initial release.
 
