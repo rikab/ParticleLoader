@@ -191,7 +191,7 @@ qg_jets = Dataset(
     NUM_FILES = 20,
     options = {"generator" : ["pythia", "herwig"], "with_bc" : [False, True]},
     sources = ['zenodo', 'dropbox'],
-    shapes = ['(100, 2)', '(1,)'],
+    shapes = ['(200, 2)', '(1,)'],
     npz_keys=['X', 'y'],
 )
 
