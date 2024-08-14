@@ -6,9 +6,9 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "toploader"
+name = "particleloader"
 dynamic = ["version"]
-description = "Code for downloading the Top Tagging Dataset"
+description = "Code for downloading Particle Physics datasets"
 readme = "README.md"
 license = { text = "MIT" }  # SPDX short identifier
 requires-python = ">=3.7"
@@ -42,11 +42,11 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/rikab/TopDatasetDownloader"
-Homepage = "https://github.com/rikab/TopDatasetDownloader"
-"Issue Tracker" = "https://github.com/rikab/TopDatasetDownloader/issues"
-"Releases" = "https://github.com/rikab/TopDatasetDownloader/releases"
-"Source Code" = "https://github.com/rikab/TopDatasetDownloader"
+Documentation = "https://github.com/rikab/ParticleLoader"
+Homepage = "https://github.com/rikab/ParticleLoader"
+"Issue Tracker" = "https://github.com/rikab/ParticleLoader/issues"
+"Releases" = "https://github.com/rikab/ParticleLoader/releases"
+"Source Code" = "https://github.com/rikab/ParticleLoader"
 
 
 [tool.hatch.version]
@@ -56,7 +56,7 @@ source = "vcs"
 local_scheme = "no-local-version"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/toploader/_version.py"
+version-file = "src/particleloader/_version.py"
 
 [tool.hatch.build.targets.sdist]
 # only-include files that are needed to ignore examples
@@ -68,10 +68,10 @@ only-include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/toploader"]
+packages = ["src/particleloader"]
 
 [tool.coverage.run]
-source = ["toploader"]
+source = ["particleloader"]
 branch = true
 
 [tool.coverage.report]

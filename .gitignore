@@ -1,0 +1,5 @@
+# Ignore the EventGenerator directory
+
+EventGenerator/
+.vscode/
+__pycache__/
