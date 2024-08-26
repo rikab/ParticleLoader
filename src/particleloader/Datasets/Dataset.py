@@ -171,7 +171,8 @@ class Dataset:
         if self.npz_keys is not None:
             for key in self.npz_keys:
                 data.append([])
-
+        else:
+            data.append([])
 
         # Loop over files
         for i in range(num_files):
@@ -200,18 +201,23 @@ class Dataset:
                         print(f"Error loading {filename} from source {source}, trying next source...")
 
             # We found the data, now load it
-            with np.load(fpath) as f:
-                if self.npz_keys is not None:
-                    for j, key in enumerate(self.npz_keys):
-                        data[j].append(f[key])
-                else:
-                        data.append(f)
+            try:
+                with np.load(fpath) as f:
+                    if self.npz_keys is not None:
+                        for j, key in enumerate(self.npz_keys):
+                            data[j].append(f[key])
+                    else:
+                            data[0].append(f)
+            except Exception as e:
+                f = np.load(fpath)
+                data[0].append(f)
 
         # Concatenate data
         return_data = []
         for (d, shape) in enumerate(self.shapes):
             Xs = data[d]
 
+            # Most common case: X, y pairs
             if len(shape) == 2:
                 X = np.vstack([_pad_events_axis1(x[...,:shape[-2], :shape[-1]], shape[-2]) for x in Xs])
                 return_data.append(X[:num_samples])
@@ -219,6 +225,8 @@ class Dataset:
                 X = np.concatenate(Xs, axis = 0)
                 return_data.append(X[:num_samples])
 
+        if len(return_data) == 1:
+            return return_data[0]
 
         return return_data            
 
