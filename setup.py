@@ -8,15 +8,15 @@ def get_version():
         # Get the output from git describe
         version = subprocess.check_output(["git", "describe", "--tags", "--long"]).strip().decode("utf-8")
         
-        # Remove the leading 'v' (if present) and convert the version to a valid PEP 440 format
-        # Example: v1.0.1-1-g68c95a7 -> 1.0.1+1.g68c95a7
+        # Match the version and discard the local part
         match = re.match(r"v?(\d+\.\d+\.\d+)(?:-(\d+)-g([0-9a-f]+))?", version)
         if match:
-            base_version = match.group(1)  # 1.0.1
-            if match.group(2):  # Handle non-tagged commits (e.g., 1 commit after tag)
-                version = f"{base_version}+{match.group(2)}.g{match.group(3)}"  # 1.0.1+1.g68c95a7
+            base_version = match.group(1)  # 0.0.7
+            # If there are additional commits, append post-release versioning
+            if match.group(2) and match.group(2) != "0":  # Not exactly at the tag
+                version = f"{base_version}.post{match.group(2)}"  # 0.0.7.post3
             else:
-                version = base_version  # If it's exactly a tagged version
+                version = base_version  # If it's exactly a tagged version, use it directly
         return version
     except Exception:
         return "0.0.1"  # Default/fallback version if VCS version not available
