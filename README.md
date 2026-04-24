@@ -15,6 +15,7 @@ See ```example.ipynb``` for detailed example usage.
 As of the latest release, the public datasets are:
 
 * **Quark/Gluon Jets:** `qg_jets`, a dataset of quark and gluon jets with labels generated in Pythia or Herwig, with the option of including _b_ and _c_ quarks.
+* **Quark/Gluon Jets (reduced precision):** `qg_jets_reduced`, a dataset of quark and gluon jets with labels generated in Pythia, available in a variety of reduced datatype formats (fp32, fp16, TF experimental fp8e4m3fn)
 * **Top/QCD Jets:** `topqcd_jets`, a dataset of quark and gluon jets with labels generated in Pythia or Herwig.
 * **SPECTER LEP dijets:** `SPECTER_ee_dijets`, a dataset of LEP-like e+e- collisions to hadrons generated in Pythia, as used in arxiv:2410:XXXXX
 * **SPECTER QCD jets:** `SPECTER_qcd_jets`, a dataset of QCD jets generated in Pythia, as used in arxiv:2410:XXXXX
